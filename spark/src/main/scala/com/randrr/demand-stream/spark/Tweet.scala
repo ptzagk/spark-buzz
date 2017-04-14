@@ -17,5 +17,5 @@ case class Tweet(
   timestamp_ms: String,
   text: String,
   lang: String,
-  truncated: Boolean,
+  truncated: Option[Boolean],
   entities: Seq[TweetEntity])
