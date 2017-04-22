@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# e.g.
+# BUZZROOT=~/data/buzz/data
+# ./sorted "$BUZZROOT/company_counts/11-*"
+# ./sorted "$BUZZROOT/ngram_counts/11-*"
+
+FILTER=$1
+
+cat $FILTER | sort -t , -k 2 -n -r 

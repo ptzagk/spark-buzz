@@ -11,6 +11,7 @@ lazy val twitter = (project in file("twitter")).
   settings(
     commonSettings,
     name := "Twitter",
+    // mainClass in assembly := "com.randrr.buzz.twitter.TwitterStream",
     libraryDependencies += hbcCore,
     libraryDependencies += kafka,
     libraryDependencies += scallop,
@@ -24,9 +25,11 @@ lazy val spark = (project in file("spark")).
   settings(
     commonSettings,
     name := "Spark",
-    libraryDependencies += sparkCore,
-    libraryDependencies += sparkSql,
-    libraryDependencies += sparkSqlKafka,
+    // mainClass in assembly := "com.randrr.buzz.spark.TweetAnalyzer",
+    libraryDependencies += sparkCore % Provided,
+    libraryDependencies += sparkSql % Provided,
+    libraryDependencies += sparkSqlKafka % Provided,
+    libraryDependencies += commonsCsv,
     libraryDependencies += scallop,
     libraryDependencies += scalaLogging,
     libraryDependencies += logback,

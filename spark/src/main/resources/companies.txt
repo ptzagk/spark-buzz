@@ -1,0 +1,514 @@
+walmart
+exxon mobil
+apple
+berkshire hathaway
+mckesson
+unitedhealth group
+cvs health
+general motors
+ford motor
+at&t
+general electric
+amerisourcebergen
+verizon
+chevron
+costco
+fannie mae
+kroger
+amazon
+walgreens boots alliance
+hp
+cardinal health
+express scripts holding
+jp morgan chase
+j p morgan chase
+boeing
+microsoft
+bank of america
+bank america
+wells fargo
+home depot
+citigroup
+phillips 66
+ibm
+valero energy
+anthem
+procter gamble
+state farm insurance
+alphabet
+comcast
+target
+johnson johnson
+metlife
+archer daniels midland
+marathon petroleum
+freddie mac
+pepsico
+united technologies
+aetna
+lowes
+ups
+aig
+prudential financial
+intel
+humana
+disney
+cisco systems
+pfizer
+dow chemical
+sysco
+fedex
+caterpillar
+lockheed martin
+new york life insurance
+coca-cola
+hca holdings
+ingram micro
+energy transfer equity
+tyson foods
+american airlines group
+delta air lines
+nationwide
+johnson controls
+best buy
+merck
+liberty mutual insurance group
+goldman sachs group
+honeywell international
+massachusetts mutual life insurance
+oracle
+morgan stanley
+cigna
+united continental holdings
+allstate
+tiaa
+intl fcstone
+chs
+american express
+gilead sciences
+publix super markets
+general dynamics
+tjx
+conocophillips
+conoco
+nike
+world fuel services
+3m
+mondelez international
+exelon
+twenty-first century fox
+fox
+deere
+tesoro
+time warner
+northwestern mutual
+dupont
+avnet
+macys
+enterprise products partners
+travelers
+philip morris international
+philip morris
+rite aid
+tech data
+mcdonalds
+qualcomm
+sears holdings
+capital one financial
+emc
+usaa
+duke energy
+time warner cable
+halliburton
+northrop grumman
+arrow electronics
+raytheon
+plains gp holdings
+us foods holding
+abbvie
+centene
+community health systems
+alcoa
+international paper
+emerson electric
+union pacific
+amgen
+u.s. bancorp
+bancorp
+staples
+danaher
+whirlpool
+aflac
+autonation
+progressive
+abbott laboratories
+dollar general
+tenet healthcare
+eli lilly
+southwest airlines
+penske automotive group
+manpowergroup
+kohls
+starbucks
+paccar
+cummins
+altria group
+xerox
+kimberly-clark
+hartford financial services group
+kraft heinz
+lear
+fluor
+aecom
+facebook
+jabil circuit
+centurylink
+supervalu
+general mills
+southern
+nextera energy
+thermo fisher scientific
+american electric power
+pg&e
+ngl energy partners
+bristol-myers squibb
+goodyear tire rubber
+nucor
+pnc financial services group
+health net
+micron technology
+colgate-palmolive
+freeport-mcmoran
+conagra foods
+gap
+baker hughes
+bank of new york mellon
+dollar tree
+whole foods market
+ppg industries
+genuine parts
+icahn enterprises
+performance food group
+omnicom group
+dish network
+firstenergy
+monsanto
+aes
+carmax
+national oilwell varco
+nrg energy
+western digital
+marriott international
+office depot
+nordstrom
+kinder morgan
+aramark
+davita healthcare partners
+molina healthcare
+wellcare health plans
+cbs
+visa
+lincoln national
+ecolab
+kellogg
+c.h. robinson worldwide
+textron
+loews
+illinois tool works
+synnex
+viacom
+hollyfrontier
+land olakes
+devon energy
+pbf energy
+yum brands
+texas instruments
+cdw
+waste management
+marsh mclennan
+chesapeake energy
+parker-hannifin
+occidental petroleum
+guardian life
+farmers insurance exchange
+j.c. penney
+consolidated edison
+cognizant technology solutions
+vf
+ameriprise financial
+computer sciences
+l brands
+jacobs engineering group
+principal financial
+ross stores
+bed bath beyond
+csx
+toys r us
+toysrus
+las vegas sands
+leucadia national
+dominion resources
+united states steel
+l-3 communications
+l3
+edison international
+entergy
+adp
+first data
+blackrock
+westrock
+voya financial
+sherwin-williams
+hilton worldwide holdings
+r.r. donnelley sons
+rr donnelley sons
+stanley black decker
+xcel energy
+murphy usa
+cbre group
+d.r. horton
+dr horton
+estee lauder
+praxair
+biogen
+state street
+unum group
+reynolds american
+group 1 automotive
+henry schein
+hertz global holdings
+norfolk southern
+reinsurance group of america
+public service enterprise group
+bb&t
+dte energy
+assurant
+global partners
+huntsman
+becton dickinson
+sempra energy
+autozone
+navistar international
+precision castparts
+discover financial services
+liberty interactive
+w.w. grainger
+grainger
+baxter international
+stryker
+air products chemicals
+western refining
+universal health services
+owens minor
+charter communications
+advance auto parts
+mastercard
+applied materials
+eastman chemical
+sonic automotive
+ally financial
+cst brands
+ebay
+lennar
+gamestop
+reliance steel aluminum
+hormel foods
+celgene
+genworth financial
+paypal holdings
+priceline group
+mgm resorts international
+autoliv
+fidelity national financial
+republic services
+corning
+peter kiewit sons
+univar
+mosaic
+core-mark holding
+thrivent financial for lutherans
+cameron international
+hd supply holdings
+crown holdings
+eog resources
+veritiv
+anadarko petroleum
+laboratory of america
+pacific life
+news
+jarden
+suntrust banks
+avis budget group
+broadcom
+american family insurance group
+level 3 communications
+tenneco
+united natural foods
+dean foods
+campbell soup
+mohawk industries
+borgwarner
+pvh
+ball
+oreilly automotive
+eversource energy
+franklin resources
+masco
+lithia motors
+kkr
+oneok
+newmont mining
+ppl
+spartannash
+quanta services
+xpo logistics
+ralph lauren
+interpublic group
+steel dynamics
+wesco international
+quest diagnostics
+boston scientific
+agco
+foot locker
+hershey
+centerpoint energy
+williams
+dicks sporting goods
+live nation entertainment
+mutual of omaha insurance
+w.r. berkley
+lkq
+avon products
+darden restaurants
+kindred healthcare
+weyerhaeuser
+caseys general stores
+sealed air
+fifth third bancorp
+dover
+huntington ingalls industries
+netflix
+dillards
+emcor group
+jones financial
+ak steel holding
+ugi
+expedia
+salesforce
+targa resources
+apache
+spirit aerosystems holdings
+expeditors international of washington
+anixter international
+fidelity national information services
+asbury automotive group
+hess
+ryder system
+terex
+coca-cola european partners
+auto-owners insurance
+cablevision systems
+symantec
+charles schwab
+calpine
+cms energy
+alliance data systems
+jetblue airways
+discovery communications
+trinity industries
+sanmina
+ncr
+fmc technologies
+erie insurance group
+rockwell automation
+dr pepper snapple group
+iheartmedia
+tractor supply
+j.b. hunt transport services
+jb hunt
+commercial metals
+owens-illinois
+harman international industries
+baxalta
+american financial group
+netapp
+graybar electric
+oshkosh
+ameren
+a-mark precious metals
+barnes noble
+dana holding
+constellation brands
+lifepoint health
+zimmer biomet holdings
+harley-davidson
+pultegroup
+newell brands
+avery dennison
+jones lang lasalle
+wec energy group
+marathon oil
+travelcenters of america
+united rentals
+hrg group
+old republic international
+windstream holdings
+starwood hotels resorts
+delek us holdings
+packaging of america
+quintiles transnational holdings
+hanesbrands
+realogy holdings
+mattel
+motorola solutions
+j.m. smucker
+smucker
+regions financial
+celanese
+clorox
+ingredion
+genesis healthcare
+peabody energy
+alaska air group
+seaboard
+frontier communications
+amphenol
+lansing trade group
+sandisk
+st. jude medical
+wyndham worldwide
+kelly services
+western union
+envision healthcare holdings
+visteon
+arthur j. gallagher
+arthur j gallagher
+host hotels resorts
+ashland
+insight enterprises
+energy future holdings
+markel
+essendant
+ch2m hill
+western southern financial group
+owens corning
+s&p global
+raymond james financial
+nisource
+airgas
+abm industries
+citizens financial group
+booz allen hamilton holding
+simon property group
+domtar
+rockwell collins
+lam research
+fiserv
+spectra energy
+navient
+big lots
+telephone data systems
+first american financial
+nvr
+cincinnati financial
+burlington stores

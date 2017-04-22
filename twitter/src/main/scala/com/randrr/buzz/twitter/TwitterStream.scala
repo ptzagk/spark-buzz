@@ -1,4 +1,4 @@
-package com.randrr.demandstream.twitter
+package com.randrr.buzz.twitter
 
 import scala.util.Properties
 import collection.JavaConverters._

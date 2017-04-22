@@ -1,4 +1,4 @@
-package com.randrr.demandstream.twitter
+package com.randrr.buzz.twitter
 
 import java.util.{Properties}
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord, Callback, RecordMetadata}
