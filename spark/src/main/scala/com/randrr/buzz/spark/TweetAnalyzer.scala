@@ -13,14 +13,14 @@ import org.apache.hadoop.fs.Path
 import org.apache.spark.sql.streaming.OutputMode
 
 class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
-  val kafkaBrokers = opt[String]()
-  val kafkaTopic = opt[String]()
+  val kafkaBrokers = opt[String](required=true)
+  val kafkaTopic = opt[String](required=true)
 
   verify()
 }
 
 object TweetAnalyzer {
-  val master = scala.util.Properties.envOrElse("BUZZ_MASTER", "local[4]")
+  val master = scala.util.Properties.envOrElse("BUZZ_MASTER", "")
   val checkpointDir = scala.util.Properties.envOrElse("BUZZ_DIR_CHECKPOINTS", "")
   val dataDir = scala.util.Properties.envOrElse("BUZZ_DIR_DATA", "")
 

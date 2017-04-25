@@ -1,3 +1,4 @@
+import sbtassembly.AssemblyPlugin.defaultShellScript
 import Dependencies._
 
 lazy val commonSettings = Seq(
@@ -10,31 +11,41 @@ lazy val commonSettings = Seq(
 lazy val twitter = (project in file("twitter")).
   settings(
     commonSettings,
-    name := "Twitter",
-    // mainClass in assembly := "com.randrr.buzz.twitter.TwitterStream",
+    name := "jobbuzz-twitter",
+    mainClass in assembly := Some("com.randrr.buzz.twitter.TwitterStream"),
+    assemblyJarName in assembly := s"${name.value}.jar",
     libraryDependencies += hbcCore,
     libraryDependencies += kafka,
     libraryDependencies += scallop,
     libraryDependencies += scalaLogging,
     libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test,
-    libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-log4j12")) }
+    libraryDependencies += scalaTest,
+    libraryDependencies ~= { _.map(_.excludeAll(Exclusions.all: _*)) }
   )
 
 lazy val spark = (project in file("spark")).
   settings(
     commonSettings,
-    name := "Spark",
-    // mainClass in assembly := "com.randrr.buzz.spark.TweetAnalyzer",
-    libraryDependencies += sparkCore % Provided,
-    libraryDependencies += sparkSql % Provided,
-    libraryDependencies += sparkSqlKafka % Provided,
+    name := "jobbuzz-spark",
+    mainClass in assembly := Some("com.randrr.buzz.spark.TweetAnalyzer"),
+    libraryDependencies += hbcCore,
+    assemblyJarName in assembly := s"${name.value}.jar",
+    assemblyExcludedJars in assembly := {
+      val cp = (fullClasspath in assembly).value
+      cp filter { el =>
+        (el.data.getName == "unused-1.0.0.jar") ||
+        (el.data.getName == "spark-tags_2.11-2.1.0.jar")  
+      }
+    },
+    libraryDependencies += sparkCore,
+    libraryDependencies += sparkSql,
+    libraryDependencies += sparkSqlKafka,
     libraryDependencies += commonsCsv,
     libraryDependencies += scallop,
     libraryDependencies += scalaLogging,
     libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test,
-    libraryDependencies ~= { _.map(_.exclude("org.slf4j", "slf4j-log4j12")) }
+    libraryDependencies += scalaTest,
+    libraryDependencies ~= { _.map(_.excludeAll(Exclusions.all: _*)) }
   )
 
 lazy val root = (project in file(".")).

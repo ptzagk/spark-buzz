@@ -1,0 +1,15 @@
+#!/bin/bash
+
+SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+
+cd "$SCRIPTPATH/.."
+
+sbt assembly
+
+cd "$SCRIPTPATH/../twitter"
+
+docker build .
+
+cd "$SCRIPTPATH/../spark"
+
+docker build .

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+java -jar $JOBBUZZ_HOME/jobbuzz-twitter.jar \
+  --tweet-filters jobs job careers hire \
+  --kafka-topic job-tweets \
+  --kafka-brokers jobbuzz_kafka 

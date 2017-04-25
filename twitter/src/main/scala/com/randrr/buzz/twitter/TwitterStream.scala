@@ -12,9 +12,9 @@ import com.twitter.hbc.core.processor.StringDelimitedProcessor
 import com.twitter.hbc.httpclient.auth.OAuth1
 
 class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
-  val kafkaBrokers = opt[String]()
-  val kafkaTopic = opt[String]()
-  val tweetFilters = opt[List[String]]()
+  val kafkaBrokers = opt[String](required=true)
+  val kafkaTopic = opt[String](required=true)
+  val tweetFilters = opt[List[String]](required=true)
 
   verify()
 }
