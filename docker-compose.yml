@@ -1,36 +1,67 @@
 version: '2'
 
 services:
+  # namenode:
+  #   image: singularities/hadoop
+  #   command: start-hadoop namenode
+  #   hostname: namenode
+  #   environment:
+  #     HDFS_USER: buzz
+  #   ports:
+  #     - 8020:8020
+  #     - 14000:14000
+  #     - 50070:50070
+  #     - 50075:50075
+  #     - 10020:10020
+  #     - 13562:13562
+  #     - 19888:19888
+
+  # datanode:
+  #   image: singularities/hadoop
+  #   command: start-hadoop datanode namenode
+  #   environment:
+  #     HDFS_USER: buzz
+  #   links:
+  #     - namenode
 
   jobbuzz_zookeeper:
     image: wurstmeister/zookeeper
     container_name: jobbuzz_zookeeper
     ports:
       - 2181:2181
-    volumes:
-      - /data/jobbuzz_zookeeper/data:/opt/zookeeper-3.4.9/data
-      - /data/jobbuzz_zookeeper/conf:/opt/zookeeper-3.4.9/conf
 
   jobbuzz_kafka:
     image: wurstmeister/kafka:0.10.2.0
     container_name: jobbuzz_kafka
+    hostname: jobbuzz_kafka
     environment:
       KAFKA_ADVERTISED_HOST_NAME: jobbuzz_kafka 
       KAFKA_ZOOKEEPER_CONNECT: jobbuzz_zookeeper:2181
+      CREATE_KAFKA_TOPICS: job-tweets:4:1
+    ports:
+      - 9092:9092
     links:
       - jobbuzz_zookeeper
     volumes:
-      - /data/jobbuzz_kafka:/var/lib/kafka
+      - /var/run/docker.sock:/var/run/docker.sock
+      # - ~/data/jobbuzz_kafka:/var/lib/kafka
   
-  jobbuzz_spark_master:
+  sparkmaster:
     image: gettyimages/spark:2.1.0-hadoop-2.7
-    command: bin/spark-class org.apache.spark.deploy.master.Master -h jobbuzz_spark_master
-    hostname: jobbuzz_spark_master
-    container_name: jobbuzz_spark_master
+    command: bin/spark-class org.apache.spark.deploy.master.Master -h sparkmaster
+    hostname: sparkmaster
+    container_name: sparkmaster
     environment:
-      MASTER: spark://jobbuzz_spark_master:7077
+      MASTER: spark://sparkmaster:7077
       SPARK_CONF_DIR: /conf
       SPARK_PUBLIC_DNS: localhost
+      BUZZ_DIR_DATA: $BUZZ_DIR_DATA
+      BUZZ_DIR_CHECKPOINTS: $BUZZ_DIR_CHECKPOINTS
+    links:
+      - jobbuzz_zookeeper
+      - jobbuzz_kafka
+      # - namenode
+      # - datanode
     expose:
       - 6066
       - 7001
@@ -46,12 +77,12 @@ services:
       - 7077:7077
       - 8080:8080
     volumes:
-      - /data/jobbuzz_spark/conf/master:/conf
-      - /data/jobbuzz_spark/tmp/data:/tmp/data
+      - ~/data/jobbuzz_spark/conf/master:/conf
+      - ~/data/jobbuzz_spark/tmp/data:/tmp/data
 
-  spark_worker:
+  jobbuzz_spark_worker:
     image: gettyimages/spark:2.1.0-hadoop-2.7
-    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://jobbuzz_spark_master:7077
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://sparkmaster:7077
     environment:
       SPARK_CONF_DIR: /conf
       SPARK_WORKER_CORES: 2
@@ -59,8 +90,14 @@ services:
       SPARK_WORKER_PORT: 8881
       SPARK_WORKER_WEBUI_PORT: 8081
       SPARK_PUBLIC_DNS: localhost
+      BUZZ_DIR_DATA: $BUZZ_DIR_DATA
+      BUZZ_DIR_CHECKPOINTS: $BUZZ_DIR_CHECKPOINTS
     links:
-      - jobbuzz_spark_master
+      - sparkmaster
+      # - namenode
+      # - datanode
+      - jobbuzz_zookeeper
+      - jobbuzz_kafka
     expose:
       - 7012
       - 7013
@@ -72,41 +109,43 @@ services:
       - ~/data/jobbuzz_spark/conf/worker:/conf
       - ~/data/jobbuzz_spark/tmp/data:/tmp/data
 
-  jobbuzz_zeppelin:
-    image: xemuliam/zeppelin:0.7.0
-    container_name: jobbuzz_zeppelin
-    links:
-      - jobbuzz_spark_master
-    ports:
-      - 3000:8080
-      - 8443:8443
-    volumes:
-      - /data/jobbuzz_zeppelin/notebooks:/usr/zeppelin/notebook
-      - /data/jobbuzz_zeppelin/data:/usr/zeppelin/data
+  # jobbuzz_zeppelin:
+  #   image: xemuliam/zeppelin:0.7.0
+  #   container_name: jobbuzz_zeppelin
+  #   links:
+  #     - jobbuzz_spark_master
+  #   ports:
+  #     - 3000:8080
+  #     - 8443:8443
+  #   volumes:
+  #     - ~/data/jobbuzz_zeppelin/notebooks:/usr/zeppelin/notebook
+  #     - ~/data/jobbuzz_zeppelin/data:/usr/zeppelin/data
 
   jobbuzz_twitter:
     build:
       context: twitter
-    image: jobbuzz_twitter:latest
     container_name: jobbuzz_twitter
     links:
       - jobbuzz_zookeeper
       - jobbuzz_kafka
     environment:
-      - TWITTER_CONSUMER_KEY:$TWITTER_CONSUMER_KEY
-      - TWITTER_CONSUMER_SECRET:$TWITTER_CONSUMER_SECRET
-      - TWITTER_ACCESS_TOKEN:$TWITTER_ACCESS_TOKEN
-      - TWITTER_TOKEN_SECRET:$TWITTER_TOKEN_SECRET
+      TWITTER_CONSUMER_KEY: $TWITTER_CONSUMER_KEY
+      TWITTER_CONSUMER_SECRET: $TWITTER_CONSUMER_SECRET
+      TWITTER_ACCESS_TOKEN: $TWITTER_ACCESS_TOKEN
+      TWITTER_TOKEN_SECRET: $TWITTER_TOKEN_SECRET
 
   jobbuzz_spark:
     build:
       context: spark
-    image: jobbuzz_spark:latest
     container_name: jobbuzz_spark
     links:
       - jobbuzz_zookeeper
       - jobbuzz_kafka
+      - sparkmaster
+      # - namenode
+      # - datanode
     environment:
-      - BUZZ_DIR_DATA:$BUZZ_DIR_DATA
-      - BUZZ_DIR_CHECKPOINTS:$BUZZ_DIR_CHECKPOINTS
+      BUZZ_MASTER: $BUZZ_MASTER
+      BUZZ_DIR_DATA: $BUZZ_DIR_DATA
+      BUZZ_DIR_CHECKPOINTS: $BUZZ_DIR_CHECKPOINTS
 

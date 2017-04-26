@@ -20,7 +20,6 @@ class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
 }
 
 object TweetAnalyzer {
-  val master = scala.util.Properties.envOrElse("BUZZ_MASTER", "")
   val checkpointDir = scala.util.Properties.envOrElse("BUZZ_DIR_CHECKPOINTS", "")
   val dataDir = scala.util.Properties.envOrElse("BUZZ_DIR_DATA", "")
 
@@ -51,7 +50,6 @@ object TweetAnalyzer {
     val spark = SparkSession.
       builder.
       appName(appName).
-      master(master).
       getOrCreate()
 
     import spark.implicits._

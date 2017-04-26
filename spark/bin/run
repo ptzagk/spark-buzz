@@ -1,6 +1,8 @@
 #!/bin/bash
 
 spark-submit \
-  --deploy-mode cluster \
+  --master $BUZZ_MASTER \
   --driver-memory 1g --executor-memory 2g --executor-cores 1 \
-  jobbuzz-spark.jar
+  jobbuzz-spark.jar \
+  --kafka-topic job-tweets \
+  --kafka-brokers jobbuzz_kafka:9092
