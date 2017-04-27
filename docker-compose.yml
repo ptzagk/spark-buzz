@@ -24,27 +24,27 @@ services:
   #   links:
   #     - namenode
 
-  jobbuzz_zookeeper:
+  zookeeper:
     image: wurstmeister/zookeeper
-    container_name: jobbuzz_zookeeper
+    container_name: zookeeper
     ports:
       - 2181:2181
 
-  jobbuzz_kafka:
+  kafka:
     image: wurstmeister/kafka:0.10.2.0
-    container_name: jobbuzz_kafka
-    hostname: jobbuzz_kafka
+    container_name: kafka
+    hostname: kafka
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: jobbuzz_kafka 
-      KAFKA_ZOOKEEPER_CONNECT: jobbuzz_zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka 
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       CREATE_KAFKA_TOPICS: job-tweets:4:1
     ports:
       - 9092:9092
     links:
-      - jobbuzz_zookeeper
+      - zookeeper
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      # - ~/data/jobbuzz_kafka:/var/lib/kafka
+      - ~/data/jobbuzz_kafka:/var/lib/kafka
   
   sparkmaster:
     image: gettyimages/spark:2.1.0-hadoop-2.7
@@ -58,10 +58,8 @@ services:
       BUZZ_DIR_DATA: $BUZZ_DIR_DATA
       BUZZ_DIR_CHECKPOINTS: $BUZZ_DIR_CHECKPOINTS
     links:
-      - jobbuzz_zookeeper
-      - jobbuzz_kafka
-      # - namenode
-      # - datanode
+      - zookeeper
+      - kafka
     expose:
       - 6066
       - 7001
@@ -77,16 +75,17 @@ services:
       - 7077:7077
       - 8080:8080
     volumes:
-      - ~/data/jobbuzz_spark/conf/master:/conf
-      - ~/data/jobbuzz_spark/tmp/data:/tmp/data
+      - ~/data/jobbuzz_sparkmaster/conf/master:/conf
+      - ~/data/jobbuzz_sparkmaster/tmp/data:/tmp/data
+      - ~/data/jobbuzz_sparkmaster/data:/home/buzz/data
 
-  jobbuzz_spark_worker:
+  sparkworker:
     image: gettyimages/spark:2.1.0-hadoop-2.7
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://sparkmaster:7077
     environment:
       SPARK_CONF_DIR: /conf
       SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 1g
+      SPARK_WORKER_MEMORY: 2g
       SPARK_WORKER_PORT: 8881
       SPARK_WORKER_WEBUI_PORT: 8081
       SPARK_PUBLIC_DNS: localhost
@@ -94,20 +93,22 @@ services:
       BUZZ_DIR_CHECKPOINTS: $BUZZ_DIR_CHECKPOINTS
     links:
       - sparkmaster
-      # - namenode
-      # - datanode
-      - jobbuzz_zookeeper
-      - jobbuzz_kafka
+      - zookeeper
+      - kafka
     expose:
       - 7012
       - 7013
       - 7014
       - 7015
       - 7016
+      - 8081
       - 8881
+    ports:
+      - 8081:8081
     volumes:
-      - ~/data/jobbuzz_spark/conf/worker:/conf
-      - ~/data/jobbuzz_spark/tmp/data:/tmp/data
+      - ~/data/jobbuzz_sparkworker/conf/worker:/conf
+      - ~/data/jobbuzz_sparkworker/tmp/data:/tmp/data
+      - ~/data/jobbuzz_sparkworker/data:/home/buzz/data
 
   # jobbuzz_zeppelin:
   #   image: xemuliam/zeppelin:0.7.0
@@ -126,8 +127,8 @@ services:
       context: twitter
     container_name: jobbuzz_twitter
     links:
-      - jobbuzz_zookeeper
-      - jobbuzz_kafka
+      - zookeeper
+      - kafka
     environment:
       TWITTER_CONSUMER_KEY: $TWITTER_CONSUMER_KEY
       TWITTER_CONSUMER_SECRET: $TWITTER_CONSUMER_SECRET
@@ -139,13 +140,16 @@ services:
       context: spark
     container_name: jobbuzz_spark
     links:
-      - jobbuzz_zookeeper
-      - jobbuzz_kafka
+      - zookeeper
+      - kafka
       - sparkmaster
-      # - namenode
-      # - datanode
+      - sparkworker
+    ports:
+      - 4041:4040
     environment:
       BUZZ_MASTER: $BUZZ_MASTER
       BUZZ_DIR_DATA: $BUZZ_DIR_DATA
       BUZZ_DIR_CHECKPOINTS: $BUZZ_DIR_CHECKPOINTS
+    volumes:
+      - ~/data/jobbuzz_spark/data:/home/buzz/data
 

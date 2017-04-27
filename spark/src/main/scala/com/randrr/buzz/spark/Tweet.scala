@@ -4,5 +4,5 @@ case class Tweet(
   id_str: String,
   created_at: String,
   timestamp_ms: String,
-  text: String,
-  lang: String)
+  text: Option[String],
+  lang: Option[String])

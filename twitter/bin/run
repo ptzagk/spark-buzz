@@ -3,4 +3,4 @@
 java -jar jobbuzz-twitter.jar \
   --tweet-filters jobs job careers hire \
   --kafka-topic job-tweets \
-  --kafka-brokers jobbuzz_kafka:9092
+  --kafka-brokers kafka:9092

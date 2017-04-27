@@ -2,7 +2,7 @@
 
 spark-submit \
   --master $BUZZ_MASTER \
-  --driver-memory 1g --executor-memory 2g --executor-cores 1 \
+  --driver-memory 1g --executor-memory 2g --executor-cores 2 \
   jobbuzz-spark.jar \
   --kafka-topic job-tweets \
-  --kafka-brokers jobbuzz_kafka:9092
+  --kafka-brokers kafka:9092
