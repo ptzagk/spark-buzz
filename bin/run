@@ -4,4 +4,6 @@ SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 
 . $SCRIPTPATH/../.env
 
-docker-compose up
+sbt assembly
+
+docker-compose up -d
