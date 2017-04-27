@@ -4,9 +4,11 @@ SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 
 . $SCRIPTPATH/../.env
 
+mkdir -p ~/data/jobbuzz_spark/data
+mkdir -p ~/data/jobbuzz_sparkmaster/data
 mkdir -p ~/data/jobbuzz_sparkworker/data
 
-cp spark/src/main/resources/companies.txt ~/data/jobbuzz_sparkworker/data/
+cp spark/src/main/resources/companies.txt ~/data/jobbuzz_spark/data/
 
 sbt assembly
 
