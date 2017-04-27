@@ -1,29 +1,7 @@
 version: '2'
 
 services:
-  # namenode:
-  #   image: singularities/hadoop
-  #   command: start-hadoop namenode
-  #   hostname: namenode
-  #   environment:
-  #     HDFS_USER: buzz
-  #   ports:
-  #     - 8020:8020
-  #     - 14000:14000
-  #     - 50070:50070
-  #     - 50075:50075
-  #     - 10020:10020
-  #     - 13562:13562
-  #     - 19888:19888
-
-  # datanode:
-  #   image: singularities/hadoop
-  #   command: start-hadoop datanode namenode
-  #   environment:
-  #     HDFS_USER: buzz
-  #   links:
-  #     - namenode
-
+  
   zookeeper:
     image: wurstmeister/zookeeper
     container_name: zookeeper
@@ -109,18 +87,6 @@ services:
       - ~/data/jobbuzz_sparkworker/conf/worker:/conf
       - ~/data/jobbuzz_sparkworker/tmp/data:/tmp/data
       - ~/data/jobbuzz_sparkworker/data:/home/buzz/data
-
-  # jobbuzz_zeppelin:
-  #   image: xemuliam/zeppelin:0.7.0
-  #   container_name: jobbuzz_zeppelin
-  #   links:
-  #     - jobbuzz_spark_master
-  #   ports:
-  #     - 3000:8080
-  #     - 8443:8443
-  #   volumes:
-  #     - ~/data/jobbuzz_zeppelin/notebooks:/usr/zeppelin/notebook
-  #     - ~/data/jobbuzz_zeppelin/data:/usr/zeppelin/data
 
   jobbuzz_twitter:
     build:
