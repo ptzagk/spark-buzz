@@ -31,10 +31,11 @@ install these prerequisites at a minimum
 * sbt 
 * docker
 
+...
+
 then run `cp env.template .env`, register a twitter application and fill in the appropriate environment variables in `.env`.
 
-then...
+...
 
-* from the repo root run `sbt assembly`
-* then `bin/run`
+then from the repo root `bin/run`
 
