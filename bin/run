@@ -4,6 +4,10 @@ SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 
 . $SCRIPTPATH/../.env
 
+mkdir -p ~/data/jobbuzz_sparkworker/data
+
+cp spark/src/main/resources/companies.txt ~/data/jobbuzz_sparkworker/data/
+
 sbt assembly
 
 docker-compose up -d
