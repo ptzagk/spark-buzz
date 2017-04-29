@@ -39,3 +39,8 @@ then run `cp env.template .env`, register a twitter application and fill in the 
 
 then from the repo root `bin/run`
 
+result tables will be written to subfolders in `~/data/jobbuzz_sparkworker/data` 
+
+use `docker-compose logs -f` to follow logs.
+
+you should see frequent `INFO` log entries coming from `jobbuzz_twitter` and `jobbuzz_spark` if everything is running as expected. 
