@@ -9,6 +9,8 @@ mkdir -p ~/data/jobbuzz_sparkmaster/data
 mkdir -p ~/data/jobbuzz_sparkworker/data
 
 cp spark/src/main/resources/companies.txt ~/data/jobbuzz_spark/data/
+cp spark/src/main/resources/companies.txt ~/data/jobbuzz_sparkmaster/data/
+cp spark/src/main/resources/companies.txt ~/data/jobbuzz_sparkworker/data/
 
 sbt assembly
 
